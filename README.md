@@ -112,7 +112,6 @@ This project helped me improve my understanding of:
 # 🔮 Future Improvements
 
 * 📈 Expense Analytics & Charts
-* 🌙 Dark Mode
 * 📤 Export Transactions (PDF/CSV)
 * ☁️ Cloud Database Integration
 * 👤 User Authentication
