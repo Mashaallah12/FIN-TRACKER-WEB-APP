@@ -750,7 +750,12 @@ td button:hover { background: var(--rose); color: white; }
   color: #0f172a;
   margin-bottom: 5px;
 }
-
+#loginForm h3 {
+  color: rgb(15, 23, 41)k;
+}
+#registerForm h3{
+  color: rgb(15, 23, 41);
+}
 .auth-header p{
   color: #64748b;
   font-size: 14px;
