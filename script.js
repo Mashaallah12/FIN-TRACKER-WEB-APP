@@ -1,12 +1,143 @@
+/* ================= AUTH SYSTEM ================= */
+
+function showRegister() {
+  document.getElementById("loginForm").style.display = "none";
+  document.getElementById("registerForm").style.display = "block";
+}
+
+function showLogin() {
+  document.getElementById("registerForm").style.display = "none";
+  document.getElementById("loginForm").style.display = "block";
+}
+
+// Register User
+function registerUser() {
+
+  const name = document.getElementById("registerName").value.trim();
+  const email = document.getElementById("registerEmail").value.trim();
+  const password = document.getElementById("registerPassword").value;
+  const confirm = document.getElementById("confirmPassword").value;
+
+  if (!name || !email || !password || !confirm) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  if (password !== confirm) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const alreadyExists = users.find(user => user.email === email);
+
+  if (alreadyExists) {
+    alert("Email already registered.");
+    return;
+  }
+
+  users.push({
+    id: Date.now(),
+    name,
+    email,
+    password
+  });
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Registration Successful!");
+
+  document.getElementById("registerName").value = "";
+  document.getElementById("registerEmail").value = "";
+  document.getElementById("registerPassword").value = "";
+  document.getElementById("confirmPassword").value = "";
+
+  showLogin();
+
+}
+
+// Login User
+
+function loginUser() {
+
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+
+  if (!email || !password) {
+    alert("Please enter email and password.");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const user = users.find(user =>
+    user.email === email &&
+    user.password === password
+  );
+
+  if (!user) {
+    alert("Invalid Email or Password.");
+    return;
+  }
+
+  localStorage.setItem("currentUser", JSON.stringify(user));
+
+  document.getElementById("authPage").style.display = "none";
+
+  document.querySelector(".sidebar").style.display = "flex";
+  document.querySelector(".main").style.display = "flex";
+
+  document.getElementById("userName-display").innerText =
+    "Hello, " + user.name + " 👋";
+
+}
+
+// Check Login
+
+function checkLogin() {
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (currentUser) {
+
+    document.getElementById("authPage").style.display = "none";
+
+    document.querySelector(".sidebar").style.display = "flex";
+    document.querySelector(".main").style.display = "flex";
+
+    document.getElementById("userName-display").innerText =
+      "Hello, " + currentUser.name + " 👋";
+
+  } else {
+
+    document.getElementById("authPage").style.display = "flex";
+
+    document.querySelector(".sidebar").style.display = "none";
+    document.querySelector(".main").style.display = "none";
+
+  }
+
+}
+
 let currencySymbol = "₹";
 let currentFilter = "all";
 let myChart;
 
-window.onload = function () {
-  loadSettings();
-  refreshAll();
-};
+// window.onload = function () {
+//   loadSettings();
+//   refreshAll();
+// };
 
+window.onload = function () {
+
+  checkLogin();
+
+  loadSettings();
+
+  refreshAll();
+
+};
 // ---------- STORAGE ----------
 function getTransactions() {
   let data = localStorage.getItem("transactions");
@@ -253,6 +384,18 @@ function toggleDarkMode() {
 function resetAllData() {
   if (confirm("Are you sure? This will delete everything!")) {
     localStorage.clear();
+    
     location.reload();
   }
+}
+function logoutUser(){
+
+    if(confirm("Are you sure you want to logout?")){
+
+        localStorage.removeItem("currentUser");
+
+        location.reload();
+
+    }
+
 }

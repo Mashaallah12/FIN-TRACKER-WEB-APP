@@ -703,3 +703,157 @@ td button:hover { background: var(--rose); color: white; }
 @media (max-width: 380px) {
   .cards { grid-template-columns: 1fr; }
 }
+
+/* ================= LOGIN / REGISTER ================= */
+
+.auth-page{
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg,#0f172a,#1e293b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.auth-container{
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+
+.auth-header{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth-logo{
+  width: 55px;
+  height: 55px;
+  margin: auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#059669,#10b981);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.auth-header h2{
+  font-size: 28px;
+  color: #0f172a;
+  margin-bottom: 5px;
+}
+
+.auth-header p{
+  color: #64748b;
+  font-size: 14px;
+}
+
+.auth-group{
+  margin-top: 18px;
+}
+
+.auth-group label{
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #334155;
+}
+
+.auth-group input{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  transition: .3s;
+}
+
+.auth-group input:focus{
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16,185,129,.15);
+}
+
+.auth-btn{
+  width: 100%;
+  margin-top: 25px;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg,#059669,#10b981);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.auth-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16,185,129,.35);
+}
+
+.auth-switch{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.auth-switch span{
+  color: #059669;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-switch span:hover{
+  text-decoration: underline;
+}
+
+/* Hide Dashboard Before Login */
+
+.sidebar,
+.main{
+  display: none;
+}
+
+/* Responsive */
+
+@media(max-width:500px){
+
+.auth-container{
+  width: 92%;
+  padding: 28px 20px;
+}
+
+.auth-header h2{
+  font-size:24px;
+}
+
+}
+
+.logout-btn{
+    margin-left:15px;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:#af5151;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+}
